@@ -35,31 +35,18 @@ const categoryIcons = [
 ]
 
 // Theme-related images for each remedy - Updated with proper herb/nature images
-const remedyImages: Record<string, string> = {
-  'ginger-tea-cold': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80',
-  'peppermint-tea': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop&crop=center&auto=format&q=80',
-  'honey-oatmeal-mask': 'https://images.unsplash.com/photo-1590595900300-08711d11188d?w=400&h=550&fit=crop&crop=center&auto=format&q=80',
-  'lavender-headache': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=650&fit=crop&crop=center&auto=format&q=80',
-  'chicken-soup': 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=400&h=580&fit=crop&crop=center&auto=format&q=80',
-  'chamomile-sleep': 'https://images.unsplash.com/photo-1576092762791-fda094e6a07e?w=400&h=520&fit=crop&crop=center&auto=format&q=80',
-  'breathing-technique': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=480&fit=crop&crop=center&auto=format&q=80',
-  'ginger-turmeric-tea': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80',
-  'eucalyptus-steam': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=550&fit=crop&crop=center&auto=format&q=80',
-  'aloe-sunburn': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop&crop=center&auto=format&q=80',
-  'magnesium-bath': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80',
-  'probiotic-smoothie': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=500&fit=crop&crop=center&auto=format&q=80',
-}
+// Note: Now using gradient backgrounds with emojis instead of external images
 
 // Mock creator data
 const getCreatorData = () => {
   const creators = [
-    { name: 'Dr. Sarah Chen', avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'Maria Rodriguez', avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Michael Park', avatar: 'https://images.unsplash.com/photo-1560250097-0b73528c311a?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'Lisa Wang', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Emily Johnson', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'James Wilson', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Priya Patel', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734b584?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
+    { name: 'Dr. Sarah Chen', avatar: '👩‍⚕️', isUserGenerated: false },
+    { name: 'Maria Rodriguez', avatar: '👩‍🍳', isUserGenerated: true },
+    { name: 'Dr. Michael Park', avatar: '👨‍⚕️', isUserGenerated: false },
+    { name: 'Lisa Wang', avatar: '👩‍🌾', isUserGenerated: true },
+    { name: 'Dr. Emily Johnson', avatar: '👩‍⚕️', isUserGenerated: false },
+    { name: 'James Wilson', avatar: '👨‍🍳', isUserGenerated: true },
+    { name: 'Dr. Priya Patel', avatar: '👩‍⚕️', isUserGenerated: false },
   ]
   return creators[Math.floor(Math.random() * creators.length)]
 }
@@ -228,25 +215,25 @@ export default function RemediesPage() {
           {filteredRemedies.map((remedy) => {
             const creator = getCreatorData()
             const stats = getMockStats()
-            // Select herb image based on primary ingredient
-            const getHerbImage = (remedy: Remedy) => {
+            // Get herb styling based on primary ingredient
+            const getHerbStyling = (remedy: Remedy) => {
               const primaryIngredient = remedy.ingredients[0]?.toLowerCase() || ''
-              if (primaryIngredient.includes('ginger')) return herbImages.ginger
-              if (primaryIngredient.includes('turmeric')) return herbImages.turmeric
-              if (primaryIngredient.includes('chamomile')) return herbImages.chamomile
-              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return herbImages.peppermint
-              if (primaryIngredient.includes('lavender')) return herbImages.lavender
-              if (primaryIngredient.includes('aloe')) return herbImages.aloeVera
-              if (primaryIngredient.includes('basil')) return herbImages.basil
-              if (primaryIngredient.includes('rosemary')) return herbImages.rosemary
-              if (primaryIngredient.includes('thyme')) return herbImages.thyme
-              if (primaryIngredient.includes('sage')) return herbImages.sage
-              if (primaryIngredient.includes('cinnamon')) return herbImages.cinnamon
+              if (primaryIngredient.includes('ginger')) return { gradient: 'linear-gradient(135deg, #fbbf24, #f59e0b)', emoji: '🌿' }
+              if (primaryIngredient.includes('turmeric')) return { gradient: 'linear-gradient(135deg, #f59e0b, #d97706)', emoji: '🟡' }
+              if (primaryIngredient.includes('chamomile')) return { gradient: 'linear-gradient(135deg, #fde047, #facc15)', emoji: '🌼' }
+              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return { gradient: 'linear-gradient(135deg, #10b981, #059669)', emoji: '🌱' }
+              if (primaryIngredient.includes('lavender')) return { gradient: 'linear-gradient(135deg, #a855f7, #9333ea)', emoji: '💜' }
+              if (primaryIngredient.includes('aloe')) return { gradient: 'linear-gradient(135deg, #34d399, #10b981)', emoji: '🌵' }
+              if (primaryIngredient.includes('basil')) return { gradient: 'linear-gradient(135deg, #22c55e, #16a34a)', emoji: '🌿' }
+              if (primaryIngredient.includes('rosemary')) return { gradient: 'linear-gradient(135deg, #16a34a, #15803d)', emoji: '🌲' }
+              if (primaryIngredient.includes('thyme')) return { gradient: 'linear-gradient(135deg, #84cc16, #65a30d)', emoji: '🌿' }
+              if (primaryIngredient.includes('sage')) return { gradient: 'linear-gradient(135deg, #6b7280, #4b5563)', emoji: '🌿' }
+              if (primaryIngredient.includes('cinnamon')) return { gradient: 'linear-gradient(135deg, #92400e, #78350f)', emoji: '🟤' }
               // Default to ginger if no match
-              return herbImages.ginger
+              return { gradient: 'linear-gradient(135deg, #fbbf24, #f59e0b)', emoji: '🌿' }
             }
             
-            const image = getHerbImage(remedy)
+            const herbStyling = getHerbStyling(remedy)
             
             return (
               <div
@@ -255,11 +242,12 @@ export default function RemediesPage() {
               >
                 {/* Image */}
                 <div className="relative overflow-hidden">
-                  <img
-                    src={image}
-                    alt={remedy.name}
-                    className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div 
+                    className="w-full h-48 sm:h-64 flex items-center justify-center text-white text-6xl group-hover:scale-105 transition-transform duration-300"
+                    style={{ background: herbStyling.gradient }}
+                  >
+                    {herbStyling.emoji}
+                  </div>
                   <div className="absolute top-4 right-4">
                     <button
                       onClick={() => toggleLike(remedy.id)}
@@ -276,11 +264,9 @@ export default function RemediesPage() {
                   {/* Creator Badge */}
                   <div className="absolute bottom-4 left-4">
                     <div className="flex items-center space-x-2 bg-white/90 dark:bg-slate-800/90 rounded-full px-3 py-2 shadow-lg">
-                      <img
-                        src={creator.avatar}
-                        alt={creator.name}
-                        className="w-6 h-6 rounded-full object-cover"
-                      />
+                      <div className="w-6 h-6 flex items-center justify-center text-sm">
+                        {creator.avatar}
+                      </div>
                       <span className="text-xs font-body text-green-800 dark:text-green-200">
                         {creator.name}
                       </span>
