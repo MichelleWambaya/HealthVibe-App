@@ -40,13 +40,13 @@ const categoryIcons = [
 // Mock creator data
 const getCreatorData = () => {
   const creators = [
-    { name: 'Dr. Sarah Chen', avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'Maria Rodriguez', avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Michael Park', avatar: 'https://images.unsplash.com/photo-1560250097-0b73528c311a?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'Lisa Wang', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Emily Johnson', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
-    { name: 'James Wilson', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
-    { name: 'Dr. Priya Patel', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734b584?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
+    { name: 'Dr. Sarah Chen', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: false },
+    { name: 'Maria Rodriguez', avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: true },
+    { name: 'Dr. Michael Park', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: false },
+    { name: 'Lisa Wang', avatar: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: true },
+    { name: 'Dr. Emily Johnson', avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: false },
+    { name: 'James Wilson', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: true },
+    { name: 'Dr. Priya Patel', avatar: 'https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop', isUserGenerated: false },
   ]
   return creators[Math.floor(Math.random() * creators.length)]
 }
@@ -215,22 +215,22 @@ export default function RemediesPage() {
           {filteredRemedies.map((remedy) => {
             const creator = getCreatorData()
             const stats = getMockStats()
-            // Get herb image based on primary ingredient - using reliable image sources
+            // Get herb image based on primary ingredient - using Pexels reliable sources
             const getHerbImage = (remedy: Remedy) => {
               const primaryIngredient = remedy.ingredients[0]?.toLowerCase() || ''
-              if (primaryIngredient.includes('ginger')) return 'https://images.unsplash.com/photo-1599638392208-bc7a96d8d396?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('turmeric')) return 'https://images.unsplash.com/photo-1615485500834-bc10199bc727?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('chamomile')) return 'https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return 'https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('lavender')) return 'https://images.unsplash.com/photo-1611251135414-9c8e9ee8d4c5?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('aloe')) return 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('basil')) return 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('rosemary')) return 'https://images.unsplash.com/photo-1584278898630-7cfaa1ff7b66?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('thyme')) return 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('sage')) return 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
-              if (primaryIngredient.includes('cinnamon')) return 'https://images.unsplash.com/photo-1599940824399-7d0fa1c6e2bb?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('ginger')) return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('turmeric')) return 'https://images.pexels.com/photos/161514/turmeric-root-root-turmeric-yellow-161514.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('chamomile')) return 'https://images.pexels.com/photos/1853389/pexels-photo-1853389.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return 'https://images.pexels.com/photos/51372/pexels-photo-51372.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('lavender')) return 'https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('aloe')) return 'https://images.pexels.com/photos/4033282/pexels-photo-4033282.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('basil')) return 'https://images.pexels.com/photos/4750270/pexels-photo-4750270.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('rosemary')) return 'https://images.pexels.com/photos/461421/pexels-photo-461421.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('thyme')) return 'https://images.pexels.com/photos/45247/pexels-photo-45247.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('sage')) return 'https://images.pexels.com/photos/3833052/pexels-photo-3833052.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('cinnamon')) return 'https://images.pexels.com/photos/5617863/pexels-photo-5617863.jpeg?auto=compress&cs=tinysrgb&w=400'
               // Default fallback
-              return 'https://images.unsplash.com/photo-1599638392208-bc7a96d8d396?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'
             }
             
             const image = getHerbImage(remedy)
