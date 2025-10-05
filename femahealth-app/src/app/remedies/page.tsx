@@ -224,13 +224,13 @@ export default function RemediesPage() {
               if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return '/kimber-MUsw_WEPgho-unsplash.jpg'
               if (primaryIngredient.includes('lavender')) return '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg'
               if (primaryIngredient.includes('aloe')) return '/ingmar-NsDMLJ6wNV4-unsplash.jpg'
-              if (primaryIngredient.includes('basil')) return '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg'
-              if (primaryIngredient.includes('rosemary')) return '/copy-space-leaves-wooden-sticks.jpg'
-              if (primaryIngredient.includes('thyme')) return '/glass-cup-with-tea-net-tea-leaves.jpg'
-              if (primaryIngredient.includes('sage')) return '/kimber-MUsw_WEPgho-unsplash.jpg'
-              if (primaryIngredient.includes('cinnamon')) return '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg'
+              if (primaryIngredient.includes('basil')) return '/michiel-annaert-TEWLhkplCOo-unsplash.jpg'
+              if (primaryIngredient.includes('rosemary')) return '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg'
+              if (primaryIngredient.includes('thyme')) return '/pexels-pixabay-36753.jpg'
+              if (primaryIngredient.includes('sage')) return '/roland-deason-S2Zg5RMXl1I-unsplash.jpg'
+              if (primaryIngredient.includes('cinnamon')) return '/wp12452365-green-nature-4k-wallpapers.jpg'
               // Default fallback
-              return '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg'
+              return '/wp6938688-nature-8k-wallpapers.jpg'
             }
             
             const image = getHerbImage(remedy)
@@ -274,7 +274,10 @@ export default function RemediesPage() {
                         onError={(e) => {
                           // Fallback to initials if avatar fails to load
                           e.currentTarget.style.display = 'none'
-                          e.currentTarget.nextElementSibling.style.display = 'flex'
+                          const nextElement = e.currentTarget.nextElementSibling as HTMLElement
+                          if (nextElement) {
+                            nextElement.style.display = 'flex'
+                          }
                         }}
                       />
                       <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold hidden">
