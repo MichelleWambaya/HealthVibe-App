@@ -215,22 +215,22 @@ export default function RemediesPage() {
           {filteredRemedies.map((remedy) => {
             const creator = getCreatorData()
             const stats = getMockStats()
-            // Get herb image based on primary ingredient - using Pexels reliable sources
+            // Get herb image based on primary ingredient - using local public images
             const getHerbImage = (remedy: Remedy) => {
               const primaryIngredient = remedy.ingredients[0]?.toLowerCase() || ''
-              if (primaryIngredient.includes('ginger')) return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('turmeric')) return 'https://images.pexels.com/photos/161514/turmeric-root-root-turmeric-yellow-161514.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('chamomile')) return 'https://images.pexels.com/photos/1853389/pexels-photo-1853389.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return 'https://images.pexels.com/photos/51372/pexels-photo-51372.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('lavender')) return 'https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('aloe')) return 'https://images.pexels.com/photos/4033282/pexels-photo-4033282.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('basil')) return 'https://images.pexels.com/photos/4750270/pexels-photo-4750270.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('rosemary')) return 'https://images.pexels.com/photos/461421/pexels-photo-461421.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('thyme')) return 'https://images.pexels.com/photos/45247/pexels-photo-45247.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('sage')) return 'https://images.pexels.com/photos/3833052/pexels-photo-3833052.jpeg?auto=compress&cs=tinysrgb&w=400'
-              if (primaryIngredient.includes('cinnamon')) return 'https://images.pexels.com/photos/5617863/pexels-photo-5617863.jpeg?auto=compress&cs=tinysrgb&w=400'
+              if (primaryIngredient.includes('ginger')) return '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg'
+              if (primaryIngredient.includes('turmeric')) return '/copy-space-leaves-wooden-sticks.jpg'
+              if (primaryIngredient.includes('chamomile')) return '/glass-cup-with-tea-net-tea-leaves.jpg'
+              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return '/kimber-MUsw_WEPgho-unsplash.jpg'
+              if (primaryIngredient.includes('lavender')) return '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg'
+              if (primaryIngredient.includes('aloe')) return '/ingmar-NsDMLJ6wNV4-unsplash.jpg'
+              if (primaryIngredient.includes('basil')) return '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg'
+              if (primaryIngredient.includes('rosemary')) return '/copy-space-leaves-wooden-sticks.jpg'
+              if (primaryIngredient.includes('thyme')) return '/glass-cup-with-tea-net-tea-leaves.jpg'
+              if (primaryIngredient.includes('sage')) return '/kimber-MUsw_WEPgho-unsplash.jpg'
+              if (primaryIngredient.includes('cinnamon')) return '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg'
               // Default fallback
-              return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'
+              return '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg'
             }
             
             const image = getHerbImage(remedy)
