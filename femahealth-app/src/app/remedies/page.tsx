@@ -40,13 +40,13 @@ const categoryIcons = [
 // Mock creator data
 const getCreatorData = () => {
   const creators = [
-    { name: 'Dr. Sarah Chen', avatar: '👩‍⚕️', isUserGenerated: false },
-    { name: 'Maria Rodriguez', avatar: '👩‍🍳', isUserGenerated: true },
-    { name: 'Dr. Michael Park', avatar: '👨‍⚕️', isUserGenerated: false },
-    { name: 'Lisa Wang', avatar: '👩‍🌾', isUserGenerated: true },
-    { name: 'Dr. Emily Johnson', avatar: '👩‍⚕️', isUserGenerated: false },
-    { name: 'James Wilson', avatar: '👨‍🍳', isUserGenerated: true },
-    { name: 'Dr. Priya Patel', avatar: '👩‍⚕️', isUserGenerated: false },
+    { name: 'Dr. Sarah Chen', avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
+    { name: 'Maria Rodriguez', avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
+    { name: 'Dr. Michael Park', avatar: 'https://images.unsplash.com/photo-1560250097-0b73528c311a?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
+    { name: 'Lisa Wang', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
+    { name: 'Dr. Emily Johnson', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
+    { name: 'James Wilson', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face', isUserGenerated: true },
+    { name: 'Dr. Priya Patel', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734b584?w=100&h=100&fit=crop&crop=face', isUserGenerated: false },
   ]
   return creators[Math.floor(Math.random() * creators.length)]
 }
@@ -215,25 +215,25 @@ export default function RemediesPage() {
           {filteredRemedies.map((remedy) => {
             const creator = getCreatorData()
             const stats = getMockStats()
-            // Get herb styling based on primary ingredient
-            const getHerbStyling = (remedy: Remedy) => {
+            // Get herb image based on primary ingredient - using reliable image sources
+            const getHerbImage = (remedy: Remedy) => {
               const primaryIngredient = remedy.ingredients[0]?.toLowerCase() || ''
-              if (primaryIngredient.includes('ginger')) return { gradient: 'linear-gradient(135deg, #fbbf24, #f59e0b)', emoji: '🌿' }
-              if (primaryIngredient.includes('turmeric')) return { gradient: 'linear-gradient(135deg, #f59e0b, #d97706)', emoji: '🟡' }
-              if (primaryIngredient.includes('chamomile')) return { gradient: 'linear-gradient(135deg, #fde047, #facc15)', emoji: '🌼' }
-              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return { gradient: 'linear-gradient(135deg, #10b981, #059669)', emoji: '🌱' }
-              if (primaryIngredient.includes('lavender')) return { gradient: 'linear-gradient(135deg, #a855f7, #9333ea)', emoji: '💜' }
-              if (primaryIngredient.includes('aloe')) return { gradient: 'linear-gradient(135deg, #34d399, #10b981)', emoji: '🌵' }
-              if (primaryIngredient.includes('basil')) return { gradient: 'linear-gradient(135deg, #22c55e, #16a34a)', emoji: '🌿' }
-              if (primaryIngredient.includes('rosemary')) return { gradient: 'linear-gradient(135deg, #16a34a, #15803d)', emoji: '🌲' }
-              if (primaryIngredient.includes('thyme')) return { gradient: 'linear-gradient(135deg, #84cc16, #65a30d)', emoji: '🌿' }
-              if (primaryIngredient.includes('sage')) return { gradient: 'linear-gradient(135deg, #6b7280, #4b5563)', emoji: '🌿' }
-              if (primaryIngredient.includes('cinnamon')) return { gradient: 'linear-gradient(135deg, #92400e, #78350f)', emoji: '🟤' }
-              // Default to ginger if no match
-              return { gradient: 'linear-gradient(135deg, #fbbf24, #f59e0b)', emoji: '🌿' }
+              if (primaryIngredient.includes('ginger')) return 'https://images.unsplash.com/photo-1599638392208-bc7a96d8d396?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('turmeric')) return 'https://images.unsplash.com/photo-1615485500834-bc10199bc727?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('chamomile')) return 'https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return 'https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('lavender')) return 'https://images.unsplash.com/photo-1611251135414-9c8e9ee8d4c5?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('aloe')) return 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('basil')) return 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('rosemary')) return 'https://images.unsplash.com/photo-1584278898630-7cfaa1ff7b66?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('thyme')) return 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('sage')) return 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              if (primaryIngredient.includes('cinnamon')) return 'https://images.unsplash.com/photo-1599940824399-7d0fa1c6e2bb?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+              // Default fallback
+              return 'https://images.unsplash.com/photo-1599638392208-bc7a96d8d396?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
             }
             
-            const herbStyling = getHerbStyling(remedy)
+            const image = getHerbImage(remedy)
             
             return (
               <div
@@ -242,12 +242,15 @@ export default function RemediesPage() {
               >
                 {/* Image */}
                 <div className="relative overflow-hidden">
-                  <div 
-                    className="w-full h-48 sm:h-64 flex items-center justify-center text-white text-6xl group-hover:scale-105 transition-transform duration-300"
-                    style={{ background: herbStyling.gradient }}
-                  >
-                    {herbStyling.emoji}
-                  </div>
+                  <img
+                    src={image}
+                    alt={remedy.name}
+                    className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      // Fallback to a placeholder if image fails to load
+                      e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDQwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjMTA5NjY5Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ4cHgiPkhlcmI8L3RleHQ+Cjwvc3ZnPgo='
+                    }}
+                  />
                   <div className="absolute top-4 right-4">
                     <button
                       onClick={() => toggleLike(remedy.id)}
@@ -264,8 +267,18 @@ export default function RemediesPage() {
                   {/* Creator Badge */}
                   <div className="absolute bottom-4 left-4">
                     <div className="flex items-center space-x-2 bg-white/90 dark:bg-slate-800/90 rounded-full px-3 py-2 shadow-lg">
-                      <div className="w-6 h-6 flex items-center justify-center text-sm">
-                        {creator.avatar}
+                      <img
+                        src={creator.avatar}
+                        alt={creator.name}
+                        className="w-6 h-6 rounded-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if avatar fails to load
+                          e.currentTarget.style.display = 'none'
+                          e.currentTarget.nextElementSibling.style.display = 'flex'
+                        }}
+                      />
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold hidden">
+                        {creator.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <span className="text-xs font-body text-green-800 dark:text-green-200">
                         {creator.name}
