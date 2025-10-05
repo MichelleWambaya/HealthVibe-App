@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthVibe - Natural Remedies & Wellness</title>
+    <meta name="description" content="Discover natural remedies, herbal treatments, and wellness solutions with HealthVibe. Your trusted companion for holistic health and healing.">
+    <meta name="keywords" content="natural remedies, herbal medicine, wellness, health, healing, alternative medicine">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HealthVibe - Natural Remedies & Wellness">
+    <meta property="og:description" content="Discover natural remedies, herbal treatments, and wellness solutions with HealthVibe.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=1200&h=630&fit=crop&crop=center">
+    <meta property="og:url" content="https://healthvibe-app.vercel.app">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HealthVibe - Natural Remedies & Wellness">
+    <meta name="twitter:description" content="Discover natural remedies, herbal treatments, and wellness solutions with HealthVibe.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=1200&h=630&fit=crop&crop=center">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=1920&h=1080&fit=crop&crop=center') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Herb Showcase */
+        .herb-showcase {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .herb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .herb-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .herb-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .herb-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .herb-content {
+            padding: 1.5rem;
+        }
+        
+        .herb-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .herb-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .herb-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        /* Custom Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Herb Icon Animation */
+        .herb-icon {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">🌿 HealthVibe</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#herbs">Herbs</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Natural Healing</h1>
+                <p>Your trusted companion for natural remedies, herbal treatments, and holistic wellness solutions. Experience the power of nature's healing properties.</p>
+                <a href="/app" class="cta-button">Start Your Wellness Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #333;">Why Choose HealthVibe?</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">Empowering you with knowledge and tools for natural healing and wellness.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>AI-Powered Search</h3>
+                    <p>Find personalized natural remedies using our intelligent search system that understands your symptoms and suggests the best herbal solutions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Comprehensive Database</h3>
+                    <p>Access thousands of verified natural remedies, herbal treatments, and wellness practices from traditional and modern sources.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Medical Center Finder</h3>
+                    <p>Locate nearby healthcare facilities and specialists who support natural and integrative medicine approaches.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Seamlessly access your wellness tools anywhere with our responsive, intuitive mobile application.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Community Reviews</h3>
+                    <p>Read authentic reviews and ratings from users who have tried these natural remedies and treatments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy & Security</h3>
+                    <p>Your health data is protected with enterprise-grade security and privacy controls.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Herb Showcase -->
+    <section class="herb-showcase" id="herbs">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #333;">Featured Healing Herbs</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">Discover the natural power of these traditional healing herbs.</p>
+            
+            <div class="herb-grid">
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1599638392208-bc7a96d8d396?w=400&q=80" alt="Ginger" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Ginger</h3>
+                        <p class="herb-description">Powerful anti-inflammatory and digestive aid, perfect for nausea, colds, and joint pain relief.</p>
+                    </div>
+                </div>
+                
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1615485500834-bc10199bc727?w=400&q=80" alt="Turmeric" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Turmeric</h3>
+                        <p class="herb-description">Golden spice with powerful anti-inflammatory properties, excellent for arthritis and immune support.</p>
+                    </div>
+                </div>
+                
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1595435742656-5272d0bc9b72?w=400&q=80" alt="Chamomile" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Chamomile</h3>
+                        <p class="herb-description">Gentle calming herb perfect for stress relief, sleep support, and digestive comfort.</p>
+                    </div>
+                </div>
+                
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&q=80" alt="Peppermint" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Peppermint</h3>
+                        <p class="herb-description">Refreshing herb that aids digestion, relieves headaches, and provides natural energy.</p>
+                    </div>
+                </div>
+                
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1611251135414-9c8e9ee8d4c5?w=400&q=80" alt="Lavender" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Lavender</h3>
+                        <p class="herb-description">Aromatic herb known for its calming effects, sleep promotion, and stress reduction.</p>
+                    </div>
+                </div>
+                
+                <div class="herb-card">
+                    <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&q=80" alt="Aloe Vera" class="herb-image">
+                    <div class="herb-content">
+                        <h3 class="herb-name">Aloe Vera</h3>
+                        <p class="herb-description">Soothing plant perfect for skin healing, sunburn relief, and digestive health support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Trusted by Thousands</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.9; margin-bottom: 3rem;">Join our growing community of wellness enthusiasts.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10K+</h3>
+                    <p>Natural Remedies</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50K+</h3>
+                    <p>Happy Users</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Herb Varieties</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 HealthVibe. Empowering natural healing and wellness for everyone.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Spinner Demo -->
+    <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <div class="spinner"></div>
+        <p style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: #666;">Loading...</p>
+    </div>
+</body>
+</html>
