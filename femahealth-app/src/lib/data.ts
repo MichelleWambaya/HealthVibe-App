@@ -430,3 +430,18 @@ export const searchRemedies = (query: string): Remedy[] => {
     remedy.ingredients.some(ingredient => ingredient.toLowerCase().includes(lowercaseQuery))
   )
 }
+
+// Additional functions for compatibility
+export const getAllCategories = (): Category[] => {
+  return categories;
+};
+
+export const getConditionsByCategory = (categoryId: string): any[] => {
+  // Return empty array for now since we don't have conditions data
+  return [];
+};
+
+export const searchConditions = (query: string): any[] => {
+  // Return empty array for now since we don't have conditions data
+  return [];
+};

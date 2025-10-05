@@ -522,7 +522,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="space-y-3">
                   {section.items.map((item, itemIndex) => {
-                    const isEnabled = settings[section.category as keyof typeof settings][item.key as keyof typeof settings[typeof section.category]]
+                    const isEnabled = (settings as any)[section.category][item.key]
                     return (
                       <div key={itemIndex} className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                         <span className="text-sm font-body text-green-800 dark:text-green-200">{item.label}</span>

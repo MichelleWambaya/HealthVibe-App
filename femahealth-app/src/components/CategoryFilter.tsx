@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { getAllCategories, getConditionsByCategory } from '@/lib/data';
+import { categories, getConditionsByCategory } from '@/lib/data';
 
 interface CategoryFilterProps {
   onCategorySelect: (categoryId: string, conditions: any[]) => void;
@@ -9,7 +9,6 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ onCategorySelect, selectedCategory }: CategoryFilterProps) {
-  const categories = getAllCategories();
 
   const getCategoryColors = (color: string) => {
     const colorMap: { [key: string]: string } = {

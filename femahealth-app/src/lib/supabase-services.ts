@@ -166,7 +166,7 @@ export const getBookmarkedRemedies = async (userId: string): Promise<Remedy[]> =
     return data?.map(item => ({
       ...item.remedies,
       isBookmarked: true
-    })) || []
+    })) as unknown as Remedy[] || []
   } catch (error) {
     handleSupabaseError(error)
     return []

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { BottomNavigation } from '@/components/BottomNavigation'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { remedies, toggleBookmark, isBookmarked } from '@/lib/data'
+import { remedies, toggleBookmark, isBookmarked, herbImages } from '@/lib/data'
 import type { Remedy } from '@/lib/data'
 import { 
   MagnifyingGlassIcon,
@@ -103,7 +103,7 @@ export default function RemediesPage() {
 
   useEffect(() => {
     // Load bookmarked remedies
-    const bookmarked = new Set()
+    const bookmarked = new Set<string>()
     remedies.forEach(remedy => {
       if (isBookmarked(remedy.id)) {
         bookmarked.add(remedy.id)
@@ -228,7 +228,25 @@ export default function RemediesPage() {
           {filteredRemedies.map((remedy) => {
             const creator = getCreatorData()
             const stats = getMockStats()
-            const image = remedyImages[remedy.id] || 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80'
+            // Select herb image based on primary ingredient
+            const getHerbImage = (remedy: Remedy) => {
+              const primaryIngredient = remedy.ingredients[0]?.toLowerCase() || ''
+              if (primaryIngredient.includes('ginger')) return herbImages.ginger
+              if (primaryIngredient.includes('turmeric')) return herbImages.turmeric
+              if (primaryIngredient.includes('chamomile')) return herbImages.chamomile
+              if (primaryIngredient.includes('peppermint') || primaryIngredient.includes('mint')) return herbImages.peppermint
+              if (primaryIngredient.includes('lavender')) return herbImages.lavender
+              if (primaryIngredient.includes('aloe')) return herbImages.aloeVera
+              if (primaryIngredient.includes('basil')) return herbImages.basil
+              if (primaryIngredient.includes('rosemary')) return herbImages.rosemary
+              if (primaryIngredient.includes('thyme')) return herbImages.thyme
+              if (primaryIngredient.includes('sage')) return herbImages.sage
+              if (primaryIngredient.includes('cinnamon')) return herbImages.cinnamon
+              // Default to ginger if no match
+              return herbImages.ginger
+            }
+            
+            const image = getHerbImage(remedy)
             
             return (
               <div

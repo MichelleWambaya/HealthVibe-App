@@ -33,6 +33,7 @@ export function PrescriptionTracker({ className = '' }: PrescriptionTrackerProps
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([])
   const [selectedPrescription, setSelectedPrescription] = useState<Prescription | null>(null)
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [takenPrescriptions, setTakenPrescriptions] = useState<Record<string, Record<string, string[]>>>({})
 
   // Update current time every minute
   useEffect(() => {
@@ -73,13 +74,18 @@ export function PrescriptionTracker({ className = '' }: PrescriptionTrackerProps
     setPrescriptions(samplePrescriptions)
   }, [])
 
-  const getTimeStatus = (time: string) => {
+  const getTimeStatus = (time: string, prescriptionId: string) => {
     const now = currentTime
     const [hours, minutes] = time.split(':').map(Number)
     const prescriptionTime = new Date()
     prescriptionTime.setHours(hours, minutes, 0, 0)
     
     const diffMinutes = (now.getTime() - prescriptionTime.getTime()) / (1000 * 60)
+    
+    // Check if this time was already taken today
+    const today = now.toDateString()
+    const takenTimes = takenPrescriptions[prescriptionId]?.[today] || []
+    if (takenTimes.includes(time)) return 'taken'
     
     if (diffMinutes < -30) return 'upcoming'
     if (diffMinutes >= -30 && diffMinutes <= 30) return 'due'
@@ -108,7 +114,14 @@ export function PrescriptionTracker({ className = '' }: PrescriptionTrackerProps
   }
 
   const markAsTaken = (prescriptionId: string, time: string) => {
-    // In real app, this would update the database
+    const today = currentTime.toDateString()
+    setTakenPrescriptions(prev => ({
+      ...prev,
+      [prescriptionId]: {
+        ...prev[prescriptionId],
+        [today]: [...(prev[prescriptionId]?.[today] || []), time]
+      }
+    }))
     console.log(`Marked ${prescriptionId} at ${time} as taken`)
   }
 
@@ -191,7 +204,7 @@ export function PrescriptionTracker({ className = '' }: PrescriptionTrackerProps
           
           <div className="space-y-3">
             {selectedPrescription.times.map((time, index) => {
-              const status = getTimeStatus(time)
+              const status = getTimeStatus(time, selectedPrescription.id)
               return (
                 <div
                   key={index}

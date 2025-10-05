@@ -7,7 +7,7 @@ import { BottomNavigation } from '@/components/BottomNavigation';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { Spinner, HerbSpinner, WaveSpinner } from '@/components/Spinner';
 import { validateSearchQuery } from '@/lib/validation';
-import { toggleBookmark, isBookmarked } from '@/lib/data';
+import { toggleBookmark, isBookmarked, herbImages } from '@/lib/data';
 import { 
   MagnifyingGlassIcon, 
   HeartIcon, 
@@ -134,44 +134,44 @@ export default function SearchPage() {
   const generateRemedyImage = (query: string, variant: number = 0): string => {
     const queryLower = query.toLowerCase();
     
-    // Map search queries to herb-related Unsplash images
-    const imageMap = {
-      'headache': 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Lavender
-      'cold': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'cough': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'fever': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'stomach': 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Mint
-      'digestive': 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Mint
-      'digestion': 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Mint
-      'sleep': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Chamomile
-      'insomnia': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Chamomile
-      'stress': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Sage
-      'anxiety': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Sage
-      'pain': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Rosemary
-      'inflammation': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Rosemary
-      'skin': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Aloe Vera
-      'acne': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Aloe Vera
-      'energy': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Green Tea
-      'immune': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'turmeric': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Turmeric
-      'ginger': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'lavender': 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Lavender
-      'mint': 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Mint
-      'chamomile': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Chamomile
-      'rosemary': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Rosemary
-      'sage': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Sage
-      'thyme': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Thyme
-      'basil': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Basil
-      'oregano': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Oregano
-      'eucalyptus': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Eucalyptus
-      'aloe': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Aloe Vera
-      'green tea': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Green Tea
-      'herbal': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Herbal mix
-      'natural': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80' // Natural herbs
+    // Map search queries to herb images from data.ts
+    const herbMap = {
+      'headache': herbImages.lavender,
+      'cold': herbImages.ginger,
+      'cough': herbImages.ginger,
+      'fever': herbImages.ginger,
+      'stomach': herbImages.peppermint,
+      'digestive': herbImages.peppermint,
+      'digestion': herbImages.peppermint,
+      'sleep': herbImages.chamomile,
+      'insomnia': herbImages.chamomile,
+      'stress': herbImages.sage,
+      'anxiety': herbImages.sage,
+      'pain': herbImages.rosemary,
+      'inflammation': herbImages.rosemary,
+      'skin': herbImages.aloeVera,
+      'acne': herbImages.aloeVera,
+      'energy': herbImages.ginger,
+      'immune': herbImages.ginger,
+      'turmeric': herbImages.turmeric,
+      'ginger': herbImages.ginger,
+      'lavender': herbImages.lavender,
+      'mint': herbImages.peppermint,
+      'chamomile': herbImages.chamomile,
+      'rosemary': herbImages.rosemary,
+      'sage': herbImages.sage,
+      'thyme': herbImages.thyme,
+      'basil': herbImages.basil,
+      'oregano': herbImages.rosemary,
+      'eucalyptus': herbImages.sage,
+      'aloe': herbImages.aloeVera,
+      'green tea': herbImages.ginger,
+      'herbal': herbImages.chamomile,
+      'natural': herbImages.sage
     };
     
     // Check for specific keywords
-    for (const [key, image] of Object.entries(imageMap)) {
+    for (const [key, image] of Object.entries(herbMap)) {
       if (queryLower.includes(key)) {
         return image;
       }
@@ -179,17 +179,17 @@ export default function SearchPage() {
     
     // Default fallback herb images
     const defaultHerbImages = [
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Chamomile
-      'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Sage
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Ginger
-      'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Mint
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Rosemary
-      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Lavender
-      'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=600&fit=crop&crop=center&auto=format&q=80', // Turmeric
-      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center&auto=format&q=80'  // Aloe Vera
+      herbImages.chamomile,
+      herbImages.sage,
+      herbImages.ginger,
+      herbImages.peppermint,
+      herbImages.rosemary,
+      herbImages.lavender,
+      herbImages.turmeric,
+      herbImages.aloeVera
     ];
     
-    return defaultHerbImages[Math.floor(Math.random() * defaultHerbImages.length)];
+    return defaultHerbImages[variant % defaultHerbImages.length];
   };
 
   const generateDescription = (query: string, approach?: string): string => {

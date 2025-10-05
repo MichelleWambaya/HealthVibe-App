@@ -1,7 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { Condition } from '@/lib/data';
+
+interface Condition {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  remedies: any[];
+  symptoms?: string[];
+  severity?: string;
+}
 
 interface ConditionCardProps {
   condition: Condition;
@@ -76,20 +85,22 @@ export default function ConditionCard({ condition }: ConditionCardProps) {
       </p>
       
       {/* Symptoms Preview */}
-      <div className="mb-3">
-        <div className="flex flex-wrap gap-1">
-          {condition.symptoms.slice(0, 2).map((symptom, index) => (
-            <span key={index} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs">
-              {symptom}
-            </span>
-          ))}
-          {condition.symptoms.length > 2 && (
-            <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs">
-              +{condition.symptoms.length - 2} more
-            </span>
-          )}
+      {condition.symptoms && condition.symptoms.length > 0 && (
+        <div className="mb-3">
+          <div className="flex flex-wrap gap-1">
+            {condition.symptoms.slice(0, 2).map((symptom, index) => (
+              <span key={index} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs">
+                {symptom}
+              </span>
+            ))}
+            {condition.symptoms.length > 2 && (
+              <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs">
+                +{condition.symptoms.length - 2} more
+              </span>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Footer with remedy count and action */}
       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
@@ -97,9 +108,11 @@ export default function ConditionCard({ condition }: ConditionCardProps) {
           <span className="text-xs text-blue-600 font-medium">
             {condition.remedies.length} remedy{condition.remedies.length !== 1 ? 'ies' : ''}
           </span>
-          <span className={`px-1.5 py-0.5 text-xs font-medium ${getSeverityColor(condition.severity)}`}>
-            {condition.severity}
-          </span>
+          {condition.severity && (
+            <span className={`px-1.5 py-0.5 text-xs font-medium ${getSeverityColor(condition.severity)}`}>
+              {condition.severity}
+            </span>
+          )}
         </div>
         <div className="flex items-center space-x-1 text-blue-500 group-hover:text-blue-600">
           <span className="text-xs font-medium">View</span>
