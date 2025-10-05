@@ -7,7 +7,7 @@ import { BottomNavigation } from '@/components/BottomNavigation';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { Spinner, HerbSpinner, WaveSpinner } from '@/components/Spinner';
 import { validateSearchQuery } from '@/lib/validation';
-import { toggleBookmark, isBookmarked, herbImages } from '@/lib/data';
+import { toggleBookmark, isBookmarked } from '@/lib/data';
 import { 
   MagnifyingGlassIcon, 
   HeartIcon, 
@@ -134,40 +134,40 @@ export default function SearchPage() {
   const generateRemedyImage = (query: string, variant: number = 0): string => {
     const queryLower = query.toLowerCase();
     
-    // Map search queries to herb images from data.ts
+    // Map search queries to local herb images
     const herbMap = {
-      'headache': herbImages.lavender,
-      'cold': herbImages.ginger,
-      'cough': herbImages.ginger,
-      'fever': herbImages.ginger,
-      'stomach': herbImages.peppermint,
-      'digestive': herbImages.peppermint,
-      'digestion': herbImages.peppermint,
-      'sleep': herbImages.chamomile,
-      'insomnia': herbImages.chamomile,
-      'stress': herbImages.sage,
-      'anxiety': herbImages.sage,
-      'pain': herbImages.rosemary,
-      'inflammation': herbImages.rosemary,
-      'skin': herbImages.aloeVera,
-      'acne': herbImages.aloeVera,
-      'energy': herbImages.ginger,
-      'immune': herbImages.ginger,
-      'turmeric': herbImages.turmeric,
-      'ginger': herbImages.ginger,
-      'lavender': herbImages.lavender,
-      'mint': herbImages.peppermint,
-      'chamomile': herbImages.chamomile,
-      'rosemary': herbImages.rosemary,
-      'sage': herbImages.sage,
-      'thyme': herbImages.thyme,
-      'basil': herbImages.basil,
-      'oregano': herbImages.rosemary,
-      'eucalyptus': herbImages.sage,
-      'aloe': herbImages.aloeVera,
-      'green tea': herbImages.ginger,
-      'herbal': herbImages.chamomile,
-      'natural': herbImages.sage
+      'headache': '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg',
+      'cold': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'cough': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'fever': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'stomach': '/kimber-MUsw_WEPgho-unsplash.jpg',
+      'digestive': '/kimber-MUsw_WEPgho-unsplash.jpg',
+      'digestion': '/kimber-MUsw_WEPgho-unsplash.jpg',
+      'sleep': '/glass-cup-with-tea-net-tea-leaves.jpg',
+      'insomnia': '/glass-cup-with-tea-net-tea-leaves.jpg',
+      'stress': '/roland-deason-S2Zg5RMXl1I-unsplash.jpg',
+      'anxiety': '/roland-deason-S2Zg5RMXl1I-unsplash.jpg',
+      'pain': '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg',
+      'inflammation': '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg',
+      'skin': '/ingmar-NsDMLJ6wNV4-unsplash.jpg',
+      'acne': '/ingmar-NsDMLJ6wNV4-unsplash.jpg',
+      'energy': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'immune': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'turmeric': '/copy-space-leaves-wooden-sticks.jpg',
+      'ginger': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'lavender': '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg',
+      'mint': '/kimber-MUsw_WEPgho-unsplash.jpg',
+      'chamomile': '/glass-cup-with-tea-net-tea-leaves.jpg',
+      'rosemary': '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg',
+      'sage': '/roland-deason-S2Zg5RMXl1I-unsplash.jpg',
+      'thyme': '/pexels-pixabay-36753.jpg',
+      'basil': '/michiel-annaert-TEWLhkplCOo-unsplash.jpg',
+      'oregano': '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg',
+      'eucalyptus': '/roland-deason-S2Zg5RMXl1I-unsplash.jpg',
+      'aloe': '/ingmar-NsDMLJ6wNV4-unsplash.jpg',
+      'green tea': '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      'herbal': '/glass-cup-with-tea-net-tea-leaves.jpg',
+      'natural': '/roland-deason-S2Zg5RMXl1I-unsplash.jpg'
     };
     
     // Check for specific keywords
@@ -179,14 +179,18 @@ export default function SearchPage() {
     
     // Default fallback herb images
     const defaultHerbImages = [
-      herbImages.chamomile,
-      herbImages.sage,
-      herbImages.ginger,
-      herbImages.peppermint,
-      herbImages.rosemary,
-      herbImages.lavender,
-      herbImages.turmeric,
-      herbImages.aloeVera
+      '/glass-cup-with-tea-net-tea-leaves.jpg',
+      '/roland-deason-S2Zg5RMXl1I-unsplash.jpg',
+      '/top-view-candy-sticks-yummy-along-with-white-flowers-dark-desk.jpg',
+      '/kimber-MUsw_WEPgho-unsplash.jpg',
+      '/olegs-jonins-0H3ObNYH8ac-unsplash.jpg',
+      '/nataliya-melnychuk-POeaUftJmeM-unsplash.jpg',
+      '/copy-space-leaves-wooden-sticks.jpg',
+      '/ingmar-NsDMLJ6wNV4-unsplash.jpg',
+      '/michiel-annaert-TEWLhkplCOo-unsplash.jpg',
+      '/pexels-pixabay-36753.jpg',
+      '/wp12452365-green-nature-4k-wallpapers.jpg',
+      '/wp6938688-nature-8k-wallpapers.jpg'
     ];
     
     return defaultHerbImages[variant % defaultHerbImages.length];
